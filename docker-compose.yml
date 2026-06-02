@@ -1,0 +1,11 @@
+services:
+  yours-sync:
+    image: ghcr.io/maqiaogongmin/yours-sync-server:latest
+    container_name: yours-sync
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "${YOURS_BACKUP_PORT:-8088}:${YOURS_BACKUP_PORT:-8088}"
+    volumes:
+      - ./data:/data

@@ -1,0 +1,9 @@
+.env
+data/
+yours-backups/
+__pycache__/
+*.py[cod]
+.DS_Store
+.venv/
+server.log
+server.pid
