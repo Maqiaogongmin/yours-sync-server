@@ -2,7 +2,9 @@
 
 Self-hosted sync server for **Yours**, a local-first training log app.
 
-Yours does not provide an official cloud server. This small server lets you sync training plans, workout records, backup snapshots, and incremental change events through your own NAS, home server, VPS, or Feiniu/fnOS machine.
+Yours does not provide an official cloud account system. This small server lets you sync training plans, archived plans, manual week marks, workout records, standard/free record modes, backup snapshots, and incremental change events through your own NAS, home server, VPS, or Feiniu/fnOS machine.
+
+If you only want the simplest path, run the installer below, copy the printed server URL and API key, then paste them into Yours.
 
 ## Quick Start
 
@@ -34,6 +36,8 @@ Fill in:
 - API Key: the value printed by `./install.sh`
 
 Then tap `Test`, and tap `Sync Now`.
+
+That is all most users need. The rest of this README is for manual Docker setup, remote access, backups, and troubleshooting.
 
 ## Manual Docker Compose Setup
 
@@ -90,7 +94,7 @@ Important files:
 - `latest.zip`: latest full backup snapshot
 - `events/*.jsonl`: incremental sync events
 
-`events/*.jsonl` is not Yours Vault. Yours Vault is the folder export format from the app. Server events are internal sync logs used by this service.
+`events/*.jsonl` is not Yours Vault. Yours Vault is the app's reviewable folder export/import format. Server events are internal sync logs used by this service.
 
 Back up the whole `data/` directory, not only `latest.zip`.
 
@@ -132,6 +136,8 @@ Current protocol:
 
 - `protocolVersion: 2`
 - `identityMode: syncId`
+
+The app uses stable `syncId` values for cross-device identity. Local SQLite row IDs are not used as cross-device identity.
 
 API endpoints:
 
